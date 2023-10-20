@@ -55,7 +55,9 @@ public class Infrastructure {
 
         String ami = System.getenv("AMI");
         if (ami == null || Objects.equals(ami, "null")) {ami = "ami-06e930d39870c0680";}
-        Instance myInstance = CreateEC2Instance.createEC2Instance(appSecurityGroup, ami, pubSubnetList.get(0));
+        String keyName = System.getenv("AWS_ACCESS_KEY_NAME");
+        if (keyName == null || Objects.equals(keyName, "null")) {keyName = "testA5";}
+        Instance myInstance = CreateEC2Instance.createEC2Instance(appSecurityGroup, ami, pubSubnetList.get(0), keyName);
     }
 
     private static Vpc createVpc(String cidrBlockValue, String instanceTenancyValue, String tagNameValue) {

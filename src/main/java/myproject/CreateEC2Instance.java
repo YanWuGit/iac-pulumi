@@ -8,13 +8,13 @@ import java.util.Map;
 
 public class CreateEC2Instance {
 
-    public static Instance createEC2Instance(SecurityGroup sg, String ami, Subnet mysubnet) {
+    public static Instance createEC2Instance(SecurityGroup sg, String ami, Subnet mysubnet, String keyName) {
         return new Instance("MyEc2Instance", InstanceArgs.builder()
                 .ami(ami)
                 .instanceType("t2.micro")
                 .subnetId(mysubnet.id())
                 .vpcSecurityGroupIds(sg.id().applyValue(List::of))
-                .keyName("testA5")
+                .keyName(keyName)
                 .rootBlockDevice(InstanceRootBlockDeviceArgs.builder()
                         .volumeType("gp2")
                         .volumeSize(25)
