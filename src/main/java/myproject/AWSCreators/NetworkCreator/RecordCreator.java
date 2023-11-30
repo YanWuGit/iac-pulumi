@@ -16,9 +16,9 @@ public class RecordCreator {
                 .build());
 
 
-        return new Record("www", RecordArgs.builder()
+        return new Record(".", RecordArgs.builder()
                 .zoneId(selected.applyValue(GetZoneResult::zoneId))
-                .name("www")
+                .name(".")
                 .type("A")
                 .aliases(RecordAliasArgs.builder()
                         .name(appLoadBalancer.dnsName())
